@@ -1,7 +1,7 @@
 import os
+import sys
 import time
 import numpy as np
-import pyrender
 import trimesh
 import queue
 import imageio
@@ -9,6 +9,20 @@ import threading
 import multiprocessing
 import utils.media
 import glob
+
+try:
+    import pyrender
+    PYRENDER_AVAILABLE = True
+except ImportError:
+    PYRENDER_AVAILABLE = False
+
+def _require_pyrender():
+    if not PYRENDER_AVAILABLE:
+        raise RuntimeError(
+            "pyrender is not installed or failed to load. "
+            "Install it with: pip install pyrender\n"
+            "On Windows you may also need: pip install pyglet<2"
+        )
 
 def deg_to_rad(degrees):
     return degrees * np.pi / 180
@@ -32,6 +46,7 @@ def create_pose_light(angle_deg):
     ])
 
 def create_scene_with_mesh(vertices, faces, uniform_color, pose_camera, pose_light):
+    _require_pyrender()
     trimesh_mesh = trimesh.Trimesh(vertices=vertices, faces=faces, vertex_colors=uniform_color)
     mesh = pyrender.Mesh.from_trimesh(trimesh_mesh, smooth=True)
     scene = pyrender.Scene()
@@ -107,6 +122,7 @@ def write_images_from_queue_no_gt(fig_queue, output_dir, img_filetype):
         
     
 def render_frames_and_enqueue(fids, frame_vertex_pairs, faces, render_width, render_height, fig_queue):
+    _require_pyrender()
     fig_resolution = (render_width // 2, render_height)
     renderer = pyrender.OffscreenRenderer(*fig_resolution)
 
@@ -117,6 +133,7 @@ def render_frames_and_enqueue(fids, frame_vertex_pairs, faces, render_width, ren
     renderer.delete()
 
 def render_frames_and_enqueue_no_gt(fids, frame_vertex_pairs, faces, render_width, render_height, fig_queue):
+    _require_pyrender()
     fig_resolution = (render_width // 2, render_height)
     renderer = pyrender.OffscreenRenderer(*fig_resolution)
 

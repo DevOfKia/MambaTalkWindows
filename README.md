@@ -1,191 +1,236 @@
+# MambaTalk
 
-# 🐍 MambaTalk
+> Official PyTorch implementation of [MambaTalk: Efficient Holistic Gesture Synthesis with Selective State Space Models](https://arxiv.org/pdf/2403.09471) (NeurIPS 2024).
 
-> **Official PyTorch implementation of [MambaTalk: Efficient Holistic Gesture Synthesis with Selective State Space Models](https://arxiv.org/pdf/2403.09471).**
+MambaTalk uses Selective State Space Models to generate efficient, high-quality holistic human gestures from speech audio.
 
-MambaTalk leverages the power of Selective State Space Models to achieve efficient and high-quality holistic gesture synthesis.
+**This fork adds full Windows support and a one-command installer.**
 
-## 📝 Release Plans
+---
 
-* [x] Inference codes and pretrained weights
-* [x] Training scripts
+## Quick Start
 
-## 🛠️ Installation
+### 1. Prerequisites
 
-### Environment Setup
+| Tool | Version | Notes |
+|------|---------|-------|
+| Python | 3.9 recommended | 3.10–3.11 work but require building Mamba from source |
+| CUDA | 12.1 | Must match PyTorch wheel |
+| Conda | any | Optional but recommended for env isolation |
+| ffmpeg | any | Required for video output |
 
-We recommend **Python 3.9.21** and **CUDA 12.2**. Please follow the steps below to set up the environment:
+**Install ffmpeg:**
+- **Windows:** `winget install Gyan.FFmpeg` (or download from [ffmpeg.org](https://ffmpeg.org/download.html))
+- **Linux/Ubuntu:** `sudo apt install ffmpeg`  
+- **macOS:** `brew install ffmpeg`
 
-```shell
-git clone https://github.com/kkakkkka/MambaTalk -b main
-cd MambaTalk
+**Windows only — extra build tools** (only needed if on Python ≠ 3.9):
+- [Visual Studio Build Tools 2022](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022) with **Desktop development with C++**
+- [CUDA Toolkit 12.1](https://developer.nvidia.com/cuda-12-1-0-download-archive)
 
-# [Optional] Create a virtual env
-conda create -n mambatalk python==3.9.21
+---
+
+### 2. Create Conda Environment (Recommended)
+
+```bash
+conda create -n mambatalk python=3.9.21
 conda activate mambatalk
-
-# 1. Install system dependencies
-# ffmpeg for media processing and libstdcxx-ng for rendering
-conda install -c conda-forge libstdcxx-ng ffmpeg
-
-# 2. Install PyTorch and basic requirements
-pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
-pip install -r requirements.txt
-
-# 3. Install PyTorch3D
-pip install 'git+https://github.com/facebookresearch/pytorch3d.git@stable'
-
-# 4. Install Mamba and Causal Conv1d (Pre-compiled wheels for Linux x86_64)
-pip install https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.4.0/causal_conv1d-1.4.0+cu122torch2.1cxx11abiTRUE-cp39-cp39-linux_x86_64.whl
-pip install https://github.com/state-spaces/mamba/releases/download/v2.2.4/mamba_ssm-2.2.4+cu11torch2.1cxx11abiFALSE-cp39-cp39-linux_x86_64.whl
-
-```
-
-### 📥 Download Weights
-
-You can download the pretrained weights from [Huggingface](https://huggingface.co/xuzn/MambaTalk/tree/main) and place them in the `./pretrained/` directory:
-
-```shell
-pip3 install "huggingface_hub[cli]"
-huggingface-cli download --resume-download kkakkkka/MambaTalk --local-dir pretrained
-
-```
-
-**Directory Structure:**
-Ensure your `pretrained` folder is organized as follows:
-
-```text
-./pretrained/
-├── pretrained_vq
-│   ├── face.bin
-│   ├── foot.bin
-│   ├── hands.bin
-│   ├── lower_foot.bin
-│   └── upper.bin
-├── smplx_models
-│   └── smplx
-│       └── SMPLX_NEUTRAL_2020.npz
-├── test_sequences
-└── mambatalk_100.bin
-
-```
-
-## 🚀 Training and Inference
-
-### 1. Data Preparation
-
-Download and unzip the **BEAT2** dataset via Hugging Face to your root directory:
-
-```shell
-git lfs install
-git clone https://huggingface.co/datasets/H-Liu1997/BEAT2
-
-```
-
-### 2. Evaluation of Pretrained Weights
-
-Once the BEAT2 dataset is ready, you can run the evaluation script:
-
-```shell
-bash run_scripts/test.sh
-
-```
-
-### 3. Customized Data Processing
-
-If you wish to use your own data, please organize it in the following structure:
-
-```text
-.
-├── smplxflame_30
-│   ├── 2_scott_0_1_1.npz
-│   └── 2_scott_0_2_2.npz
-├── test.csv
-├── textgrid
-│   ├── 2_scott_0_1_1.TextGrid
-│   └── 2_scott_0_2_2.TextGrid
-└── wave16k
-    ├── 2_scott_0_1_1.wav
-    └── 2_scott_0_2_2.wav
-
-```
-
-**Format of `test.csv`:**
-
-```csv
-id,type
-2_scott_0_1_1,test
-2_scott_0_2_2,test
-
-```
-
-**Audio Alignment (TextGrid Generation):**
-We recommend using **Montreal Forced Aligner (MFA)** to generate `TextGrid` files from speech recordings.
-
-```shell
-# Install MFA and dependencies
-pip install git+https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner
-conda install -c conda-forge kalpy
-pip install pgvector Bio
-
-# Download models
-mfa model download acoustic english_us_arpa
-mfa model download dictionary english_us_arpa
-
-# Align data (Place speech recordings in ./data first)
-mfa align ./data english_us_arpa english_us_arpa ./data/result
-
-```
-
-### 4. 🎥 Visualize Generated Results
-
-After generating the `.npz` files, visualize the output using the rendering script:
-
-```shell
-npy_path="./res_2_scott_0_1_1.npz"
-wav_path="./BEAT2/beat_english_v2.0.0/wave16k/2_scott_0_1_1.wav"
-save_dir="outputs/render"
-
-xvfb-run -a python render.py --npy_path $npy_path --wav_path $wav_path --save_dir $save_dir
-
 ```
 
 ---
 
-## 🏋️ Training
+### 3. Install All Dependencies (One Command)
 
-### Train MambaTalk (Main Model)
+```bash
+python install.py
+```
 
-```shell
+That's it. The installer handles OS detection and installs the correct packages automatically.
+
+**Options:**
+
+```bash
+python install.py --cuda 118   # CUDA 11.8 instead of 12.1
+python install.py --cpu        # CPU-only (no CUDA, for testing only)
+```
+
+What the installer does per platform:
+
+| Step | Linux (Python 3.9) | Linux (other Python) | Windows |
+|------|-------------------|---------------------|---------|
+| PyTorch | Official wheel | Official wheel | Official wheel |
+| `causal_conv1d` | Official pre-built | Build from source | Build from source |
+| `mamba_ssm` | Official pre-built | Build from source | Build from source |
+| `pytorch3d` | Build from source | Build from source | **Skipped** (not needed for inference) |
+| `pyvirtualdisplay` | Installed | Installed | **Skipped** (not needed on Windows) |
+
+---
+
+### 4. Download Pretrained Weights
+
+```bash
+pip install "huggingface_hub[cli]"
+huggingface-cli download --resume-download kkakkkka/MambaTalk --local-dir pretrained
+```
+
+Expected structure:
+
+```
+pretrained/
+├── pretrained_vq/
+│   ├── face.bin
+│   ├── foot.bin
+│   ├── hands.bin
+│   ├── lower_foot.bin
+│   └── upper.bin
+├── smplx_models/
+│   └── smplx/
+│       └── SMPLX_NEUTRAL_2020.npz
+├── test_sequences/
+└── mambatalk_100.bin
+```
+
+---
+
+## Running Inference
+
+### 1. Download the BEAT2 Dataset
+
+```bash
+git lfs install
+git clone https://huggingface.co/datasets/H-Liu1997/BEAT2
+```
+
+### 2. Run Evaluation
+
+**Linux / macOS:**
+```bash
+bash run_scripts/test.sh
+```
+
+**Windows:**
+```bat
+run_scripts\test.bat
+```
+
+Or directly:
+```bash
+python test.py --config configs/mambatalk.yaml
+```
+
+### 3. Visualize Results (render to video)
+
+**Linux (headless):**
+```bash
+xvfb-run -a python render.py \
+    --npy_path ./res_2_scott_0_1_1.npz \
+    --wav_path ./BEAT2/beat_english_v2.0.0/wave16k/2_scott_0_1_1.wav \
+    --save_dir outputs/render
+```
+
+**Windows / Linux with display:**
+```bash
+python render.py \
+    --npy_path ./res_2_scott_0_1_1.npz \
+    --wav_path ./BEAT2/beat_english_v2.0.0/wave16k/2_scott_0_1_1.wav \
+    --save_dir outputs/render
+```
+
+---
+
+## Training
+
+**Linux / macOS:**
+```bash
 bash run_scripts/train.sh
-
 ```
 
-### Train VQ-VAEs (Components)
-
-You can train individual VQ-VAE components using the following commands:
-
-```shell
-# Face
-python train.py --config ./configs/cnn_vqvae_face_30.yaml 
-
-# Hands
-python train.py --config configs/cnn_vqvae_hands_30.yaml 
-
-# Lower Body
-python train.py --config configs/cnn_vqvae_lower_30.yaml 
-
-# Lower Foot
-python train.py --config configs/cnn_vqvae_lower_foot_30.yaml 
-
-# Upper Body
-python train.py --config configs/cnn_vqvae_upper_30.yaml 
-
+**Windows:**
+```bat
+run_scripts\train.bat
 ```
 
-## 📖 Citation
+### Train Individual VQ-VAE Components
 
-If you find MambaTalk useful for your research, please consider citing:
+```bash
+python train.py --config configs/cnn_vqvae_face_30.yaml      # Face
+python train.py --config configs/cnn_vqvae_hands_30.yaml     # Hands
+python train.py --config configs/cnn_vqvae_lower_30.yaml     # Lower Body
+python train.py --config configs/cnn_vqvae_lower_foot_30.yaml # Lower Foot
+python train.py --config configs/cnn_vqvae_upper_30.yaml     # Upper Body
+```
+
+---
+
+## Custom Data
+
+Organize your data like this:
+
+```
+your_data/
+├── smplxflame_30/
+│   ├── 2_scott_0_1_1.npz
+│   └── 2_scott_0_2_2.npz
+├── test.csv
+├── textgrid/
+│   ├── 2_scott_0_1_1.TextGrid
+│   └── 2_scott_0_2_2.TextGrid
+└── wave16k/
+    ├── 2_scott_0_1_1.wav
+    └── 2_scott_0_2_2.wav
+```
+
+`test.csv` format:
+```csv
+id,type
+2_scott_0_1_1,test
+2_scott_0_2_2,test
+```
+
+### Generate TextGrid Files (Audio Alignment)
+
+```bash
+pip install git+https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner
+conda install -c conda-forge kalpy
+pip install pgvector Bio
+
+mfa model download acoustic english_us_arpa
+mfa model download dictionary english_us_arpa
+mfa align ./data english_us_arpa english_us_arpa ./data/result
+```
+
+---
+
+## Troubleshooting
+
+### `mamba_ssm` build fails on Windows
+
+You need:
+1. **Visual Studio Build Tools 2022** with "Desktop development with C++" workload
+2. **CUDA Toolkit** matching your PyTorch CUDA version
+3. **Ninja:** `pip install ninja`
+
+Then retry: `python install.py`
+
+### `pyrender` fails on headless Linux
+
+Install Xvfb and use `xvfb-run`:
+```bash
+sudo apt install xvfb
+xvfb-run -a python render.py ...
+```
+
+### `ffmpeg not found`
+
+ffmpeg must be on your system PATH. Test with: `ffmpeg -version`
+
+### Out of GPU memory
+
+Reduce `batch_size` in `configs/mambatalk.yaml`.
+
+---
+
+## Citation
 
 ```bibtex
 @article{xu2024mambatalk,
@@ -196,5 +241,4 @@ If you find MambaTalk useful for your research, please consider citing:
   pages={20055--20080},
   year={2024}
 }
-
 ```

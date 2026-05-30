@@ -183,7 +183,10 @@ def process_frame(i, vertices_all, vertices1_all, faces, output_dir, use_matplot
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     import trimesh
-    import pyvirtualdisplay as Display
+    try:
+        import pyvirtualdisplay as Display
+    except ImportError:
+        Display = None  # not needed on Windows
 
     vertices = vertices_all[i]
     vertices1 = vertices1_all[i]
@@ -316,9 +319,12 @@ def render_one_sequence(
     if not use_matplotlib:
        import trimesh 
        #import pyrender
-       from pyvirtualdisplay import Display
-       display = Display(visible=0, size=(640, 480))
-       display.start()
+       try:
+           from pyvirtualdisplay import Display
+           display = Display(visible=0, size=(640, 480))
+           display.start()
+       except ImportError:
+           pass  # pyvirtualdisplay not needed on Windows
        faces = np.load(f"{model_folder}/smplx/SMPLX_NEUTRAL_2020.npz", allow_pickle=True)["f"]     
     seconds = 1
     #data_npz["jaw_pose"].shape[0]
