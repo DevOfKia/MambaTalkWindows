@@ -1,4 +1,5 @@
-# MambaTalk
+# MambaTalk Windows
+<img width="1270" height="392" alt="Screenshot 2026-05-30 194302" src="https://github.com/user-attachments/assets/ab2fc7d0-b734-4977-9c92-49633595480a" />
 
 > Official PyTorch implementation of [MambaTalk: Efficient Holistic Gesture Synthesis with Selective State Space Models](https://arxiv.org/pdf/2403.09471) (NeurIPS 2024).
 
