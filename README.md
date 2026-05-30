@@ -93,6 +93,19 @@ pretrained/
 
 ---
 
+## Examples & Demos
+
+Here is MambaTalk generating holistic gestures (face, hands, body) from raw speech audio in real-time.
+
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/8fa9fa27-56c2-4000-afcd-bd580eb3cbce" autoplay loop muted playsinline width="85%">
+      
+  </video>
+</p>
+
+> 💡 **Note:** If you want to test your own audio files, check out the [Running Inference](#running-inference) section below.
+
+---
 ## Running Inference
 
 ### 1. Download the BEAT2 Dataset
