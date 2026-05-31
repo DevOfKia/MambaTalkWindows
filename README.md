@@ -103,8 +103,6 @@ Here is MambaTalk generating holistic gestures (face, hands, body) from raw spee
   </video>
 </p>
 
-> 💡 **Note:** If you want to test your own audio files, check out the [Running Inference](#running-inference) section below.
-
 ---
 ## Running Inference
 
