@@ -1,0 +1,265 @@
+ 05-30 18:37:17 | {'a_encoder': None,
+ 'a_fix_pre': False,
+ 'a_pre_encoder': None,
+ 'acc_weight': 0.0,
+ 'additional_data': False,
+ 'adv_weight': 20.0,
+ 'ali_weight': 0.0,
+ 'amsgrad': False,
+ 'apex': False,
+ 'asmr': 0.0,
+ 'atcont': 0.0,
+ 'atmr': 0.0,
+ 'aud_prob': 1.0,
+ 'audio_dims': 1,
+ 'audio_f': 512,
+ 'audio_fps': 16000,
+ 'audio_norm': False,
+ 'audio_rep': 'amplitude+ctc+audio',
+ 'audio_sr': 16000,
+ 'batch_size': 64,
+ 'beat_align': True,
+ 'benchmark': True,
+ 'cache_only': False,
+ 'cache_path': 'datasets/beat_cache/beat_smplx_en_mambatalk_2/',
+ 'cf': 0.0,
+ 'ch': 1.0,
+ 'cl': 1.0,
+ 'clean_final_seconds': 0,
+ 'clean_first_seconds': 0,
+ 'config': 'configs/mambatalk.yaml',
+ 'csv_name': 'a2g_0',
+ 'cu': 1.0,
+ 'cudnn_enabled': True,
+ 'd_lr_weight': 0.2,
+ 'd_name': None,
+ 'data_path': './BEAT2/beat_english_v2.0.0/',
+ 'data_path_1': './pretrained/',
+ 'dataset': 'beat_sep_lower',
+ 'ddp': False,
+ 'debug': False,
+ 'decay_epochs': 9999,
+ 'decay_rate': 0.1,
+ 'decode_fusion': None,
+ 'deterministic': True,
+ 'disable_filtering': False,
+ 'div_reg_weight': 0.0,
+ 'dropout_prob': 0.3,
+ 'e_name': 'VAESKConv',
+ 'e_path': 'weights/AESKConv_240_100.bin',
+ 'emo_rep': None,
+ 'emotion_dims': 8,
+ 'emotion_f': 0,
+ 'epoch_stage': 0,
+ 'epochs': 200,
+ 'eval_model': 'motion_representation',
+ 'f_encoder': 'null',
+ 'f_fix_pre': False,
+ 'f_pre_encoder': 'null',
+ 'fac_prob': 1.0,
+ 'facial_dims': 100,
+ 'facial_f': 0,
+ 'facial_fps': 15,
+ 'facial_norm': False,
+ 'facial_rep': 'smplxflame_30',
+ 'fid_weight': 0.0,
+ 'finger_net': 'original',
+ 'freeze_wordembed': False,
+ 'fsmr': 0.0,
+ 'ftmr': 0.0,
+ 'fusion_mode': 'sum',
+ 'g_name': 'MambaTalk',
+ 'gap_weight': 0.0,
+ 'gpus': [0],
+ 'grad_norm': 0.99,
+ 'hidden_size': 768,
+ 'id_rep': 'onehot',
+ 'input_context': 'both',
+ 'is_train': True,
+ 'ita_weight': 0.0,
+ 'iwa_weight': 0.0,
+ 'kld_aud_weight': 0.0,
+ 'kld_fac_weight': 0.0,
+ 'kld_weight': 0.0,
+ 'l': 4,
+ 'lf': 3.0,
+ 'lh': 3.0,
+ 'll': 3.0,
+ 'loader_workers': 0,
+ 'log_period': 10,
+ 'loss_contrastive_neg_weight': 0.005,
+ 'loss_contrastive_pos_weight': 0.2,
+ 'loss_gan_weight': 5.0,
+ 'loss_kld_weight': 0.1,
+ 'loss_physical_weight': 0.0,
+ 'loss_reg_weight': 0.05,
+ 'loss_regression_weight': 70.0,
+ 'lr_base': 0.0005,
+ 'lr_min': 1e-07,
+ 'lr_policy': 'step',
+ 'lu': 3.0,
+ 'm_decoder': None,
+ 'm_encoder': 'null',
+ 'm_fix_pre': False,
+ 'm_pre_encoder': 'null',
+ 'mean_pose_path': '/datasets/trinity/train/',
+ 'model': 'mambatalk',
+ 'momentum': 0.8,
+ 'motion_f': 256,
+ 'msmr': 0.0,
+ 'mtmr': 0.0,
+ 'multi_length_training': [1.0],
+ 'n_layer': 1,
+ 'n_poses': 34,
+ 'n_pre_poses': 4,
+ 'name': '0530_183717_mambatalk',
+ 'nesterov': True,
+ 'new_cache': False,
+ 'no_adv_epoch': 999,
+ 'notes': '',
+ 'opt': 'adam',
+ 'opt_betas': [0.5, 0.999],
+ 'ori_joints': 'beat_smplx_joints',
+ 'out_path': './outputs/audio2pose/',
+ 'port': 8690,
+ 'pos_encoding_type': 'sin',
+ 'pos_prob': 1.0,
+ 'pose_dims': 330,
+ 'pose_fps': 30,
+ 'pose_length': 64,
+ 'pose_norm': False,
+ 'pose_rep': 'smplxflame_30',
+ 'pre_frames': 4,
+ 'pre_type': 'zero',
+ 'pretrain': False,
+ 'project': 's2g',
+ 'queue_size': 1024,
+ 'random_seed': 2021,
+ 'rec_aud_weight': 0.0,
+ 'rec_fac_weight': 0.0,
+ 'rec_pos_weight': 0.0,
+ 'rec_txt_weight': 0.0,
+ 'rec_ver_weight': 0.0,
+ 'rec_weight': 1.0,
+ 'render_concurrent_num': 8,
+ 'render_tmp_img_filetype': 'bmp',
+ 'render_video_fps': 30,
+ 'render_video_height': 720,
+ 'render_video_width': 1920,
+ 'resume': '',
+ 'root_path': './',
+ 'rot6d': True,
+ 'sem_rep': None,
+ 'sparse': 1,
+ 'speaker_dims': 4,
+ 'speaker_f': 0,
+ 'speaker_id': 'onehot',
+ 'stat': 'ts',
+ 'std_pose_path': '/datasets/trinity/train/',
+ 'stride': 20,
+ 't_encoder': 'null',
+ 't_fix_pre': False,
+ 't_pre_encoder': 'fasttext',
+ 'tar_joints': 'beat_smplx_full',
+ 'test_ckpt': './pretrained/mambatalk_100.bin',
+ 'test_data_path': '/datasets/trinity/test/',
+ 'test_length': 64,
+ 'test_period': 10,
+ 'test_start_epoch': 70,
+ 'train_data_path': '/datasets/trinity/train/',
+ 'train_trans': True,
+ 'trainer': 'mambatalk',
+ 'training_speakers': [2],
+ 'tsmr': 0.0,
+ 'ttmr': 0.0,
+ 'txt_prob': 1.0,
+ 'use_aug': False,
+ 'vae_codebook_size': 256,
+ 'vae_grow': [1, 1, 2, 1],
+ 'vae_layer': 4,
+ 'vae_length': 240,
+ 'vae_quantizer_lambda': 1.0,
+ 'vae_test_dim': 330,
+ 'vae_test_len': 32,
+ 'vae_test_stride': 20,
+ 'val_data_path': '/datasets/trinity/val/',
+ 'variational': False,
+ 'vel_weight': 0.0,
+ 'warmup_epochs': 0,
+ 'warmup_lr': 0.0005,
+ 'wei_weight': 0.0,
+ 'weight_decay': 0.0,
+ 'word_cache': False,
+ 'word_dims': 300,
+ 'word_f': 256,
+ 'word_index_num': 11195,
+ 'word_rep': 'textgrid',
+ 'z_type': 'speaker'}
+ 05-30 18:37:17 | # ------------ 0530_183717_mambatalk ----------- #
+ 05-30 18:37:17 | PyTorch version: 2.5.1+cu121
+ 05-30 18:37:17 | CUDA version: 12.1
+ 05-30 18:37:17 | 1 GPUs
+ 05-30 18:37:17 | Random Seed: 2021
+ 05-30 18:37:27 | An error has been caught in function '<module>', process 'MainProcess' (21344), thread 'MainThread' (3052):
+Traceback (most recent call last):
+
+> File "D:\Projects\Claude\MambaTalk\test.py", line 231, in <module>
+    main_worker(0, 1, args)
+    │                 └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+    └ <function main_worker at 0x000001C8F210A520>
+
+  File "D:\Projects\Claude\MambaTalk\test.py", line 212, in main_worker
+    trainer = __import__(f"{args.trainer}_trainer", fromlist=["something"]).CustomTrainer(args) if args.trainer != "base" else BaseTrainer(args)
+                            │    │                                                        │        │    │                      │           └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+                            │    │                                                        │        │    │                      └ <class '__main__.BaseTrainer'>
+                            │    │                                                        │        │    └ 'mambatalk'
+                            │    │                                                        │        └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+                            │    │                                                        └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+                            │    └ 'mambatalk'
+                            └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+
+  File "D:\Projects\Claude\MambaTalk\mambatalk_trainer.py", line 29, in __init__
+    super().__init__(args)
+                     └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+
+  File "D:\Projects\Claude\MambaTalk\train.py", line 43, in __init__
+    self.train_data = __import__(f"dataloaders.{args.dataset}", fromlist=["something"]).CustomDataset(args, "train")
+    │                                           │    │                                                └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+    │                                           │    └ 'beat_sep_lower'
+    │                                           └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+    └ <mambatalk_trainer.CustomTrainer object at 0x000001C8F1F17920>
+
+  File "D:\Projects\Claude\MambaTalk\dataloaders\beat_sep_lower.py", line 68, in __init__
+    split_rule = pd.read_csv(args.data_path+"train_test_split.csv")
+                 │  │        │    └ './BEAT2/beat_english_v2.0.0/'
+                 │  │        └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+                 │  └ <function read_csv at 0x000001C8CE38C5E0>
+                 └ <module 'pandas' from 'C:\\Users\\Niccee\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pandas\\__init__.py'>
+
+  File "C:\Users\Niccee\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\parsers\readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           │     │                   └ {'delimiter': ',', 'header': 'infer', 'names': None, 'index_col': None, 'usecols': None, 'dtype': None, 'engine': 'c', 'conve...
+           │     └ './BEAT2/beat_english_v2.0.0/train_test_split.csv'
+           └ <function _read at 0x000001C8CE38C220>
+  File "C:\Users\Niccee\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\parsers\readers.py", line 611, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             │              │                     └ {'delimiter': ',', 'header': 'infer', 'names': None, 'index_col': None, 'usecols': None, 'dtype': None, 'engine': 'c', 'conve...
+             │              └ './BEAT2/beat_english_v2.0.0/train_test_split.csv'
+             └ <class 'pandas.io.parsers.readers.TextFileReader'>
+  File "C:\Users\Niccee\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\parsers\readers.py", line 1448, in __init__
+    self._engine = self._make_engine(f, self.engine)
+    │              │    │            │  │    └ 'c'
+    │              │    │            │  └ <pandas.io.parsers.readers.TextFileReader object at 0x000001C8FD1BE6C0>
+    │              │    │            └ './BEAT2/beat_english_v2.0.0/train_test_split.csv'
+    │              │    └ <function TextFileReader._make_engine at 0x000001C8CE38CF40>
+    │              └ <pandas.io.parsers.readers.TextFileReader object at 0x000001C8FD1BE6C0>
+    └ <pandas.io.parsers.readers.TextFileReader object at 0x000001C8FD1BE6C0>
+  File "C:\Users\Niccee\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\parsers\readers.py", line 1705, in _make_engine
+    self.handles = get_handle(
+    │    │         └ <function get_handle at 0x000001C8CE0DFBA0>
+    │    └ None
+    └ <pandas.io.parsers.readers.TextFileReader object at 0x000001C8FD1BE6C0>
+  File "C:\Users\Niccee\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\common.py", line 863, in get_handle
+    handle = open(
+
+FileNotFoundError: [Errno 2] No such file or directory: './BEAT2/beat_english_v2.0.0/train_test_split.csv'

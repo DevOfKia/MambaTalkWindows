@@ -1,0 +1,267 @@
+ 05-30 19:20:35 | {'a_encoder': None,
+ 'a_fix_pre': False,
+ 'a_pre_encoder': None,
+ 'acc_weight': 0.0,
+ 'additional_data': False,
+ 'adv_weight': 20.0,
+ 'ali_weight': 0.0,
+ 'amsgrad': False,
+ 'apex': False,
+ 'asmr': 0.0,
+ 'atcont': 0.0,
+ 'atmr': 0.0,
+ 'aud_prob': 1.0,
+ 'audio_dims': 1,
+ 'audio_f': 512,
+ 'audio_fps': 16000,
+ 'audio_norm': False,
+ 'audio_rep': 'amplitude+ctc+audio',
+ 'audio_sr': 16000,
+ 'batch_size': 64,
+ 'beat_align': True,
+ 'benchmark': True,
+ 'cache_only': False,
+ 'cache_path': 'datasets/beat_cache/beat_smplx_en_mambatalk_2/',
+ 'cf': 0.0,
+ 'ch': 1.0,
+ 'cl': 1.0,
+ 'clean_final_seconds': 0,
+ 'clean_first_seconds': 0,
+ 'config': 'configs/mambatalk.yaml',
+ 'csv_name': 'a2g_0',
+ 'cu': 1.0,
+ 'cudnn_enabled': True,
+ 'd_lr_weight': 0.2,
+ 'd_name': None,
+ 'data_path': './pretrained/test_sequences/',
+ 'data_path_1': './pretrained/',
+ 'dataset': 'beat_sep_lower',
+ 'ddp': False,
+ 'debug': False,
+ 'decay_epochs': 9999,
+ 'decay_rate': 0.1,
+ 'decode_fusion': None,
+ 'deterministic': True,
+ 'disable_filtering': False,
+ 'div_reg_weight': 0.0,
+ 'dropout_prob': 0.3,
+ 'e_name': 'VAESKConv',
+ 'e_path': './pretrained/test_sequences/weights/AESKConv_240_100.bin',
+ 'emo_rep': None,
+ 'emotion_dims': 8,
+ 'emotion_f': 0,
+ 'epoch_stage': 0,
+ 'epochs': 200,
+ 'eval_model': 'motion_representation',
+ 'f_encoder': 'null',
+ 'f_fix_pre': False,
+ 'f_pre_encoder': 'null',
+ 'fac_prob': 1.0,
+ 'facial_dims': 100,
+ 'facial_f': 0,
+ 'facial_fps': 15,
+ 'facial_norm': False,
+ 'facial_rep': 'smplxflame_30',
+ 'fid_weight': 0.0,
+ 'finger_net': 'original',
+ 'freeze_wordembed': False,
+ 'fsmr': 0.0,
+ 'ftmr': 0.0,
+ 'fusion_mode': 'sum',
+ 'g_name': 'MambaTalk',
+ 'gap_weight': 0.0,
+ 'gpus': [0],
+ 'grad_norm': 0.99,
+ 'hidden_size': 768,
+ 'id_rep': 'onehot',
+ 'input_context': 'both',
+ 'is_train': True,
+ 'ita_weight': 0.0,
+ 'iwa_weight': 0.0,
+ 'kld_aud_weight': 0.0,
+ 'kld_fac_weight': 0.0,
+ 'kld_weight': 0.0,
+ 'l': 4,
+ 'lf': 3.0,
+ 'lh': 3.0,
+ 'll': 3.0,
+ 'loader_workers': 0,
+ 'log_period': 10,
+ 'loss_contrastive_neg_weight': 0.005,
+ 'loss_contrastive_pos_weight': 0.2,
+ 'loss_gan_weight': 5.0,
+ 'loss_kld_weight': 0.1,
+ 'loss_physical_weight': 0.0,
+ 'loss_reg_weight': 0.05,
+ 'loss_regression_weight': 70.0,
+ 'lr_base': 0.0005,
+ 'lr_min': 1e-07,
+ 'lr_policy': 'step',
+ 'lu': 3.0,
+ 'm_decoder': None,
+ 'm_encoder': 'null',
+ 'm_fix_pre': False,
+ 'm_pre_encoder': 'null',
+ 'mean_pose_path': '/datasets/trinity/train/',
+ 'model': 'mambatalk',
+ 'momentum': 0.8,
+ 'motion_f': 256,
+ 'msmr': 0.0,
+ 'mtmr': 0.0,
+ 'multi_length_training': [1.0],
+ 'n_layer': 1,
+ 'n_poses': 34,
+ 'n_pre_poses': 4,
+ 'name': '0530_192035_mambatalk',
+ 'nesterov': True,
+ 'new_cache': False,
+ 'no_adv_epoch': 999,
+ 'notes': '',
+ 'opt': 'adam',
+ 'opt_betas': [0.5, 0.999],
+ 'ori_joints': 'beat_smplx_joints',
+ 'out_path': './outputs/audio2pose/',
+ 'port': 8690,
+ 'pos_encoding_type': 'sin',
+ 'pos_prob': 1.0,
+ 'pose_dims': 330,
+ 'pose_fps': 30,
+ 'pose_length': 64,
+ 'pose_norm': False,
+ 'pose_rep': 'smplxflame_30',
+ 'pre_frames': 4,
+ 'pre_type': 'zero',
+ 'pretrain': False,
+ 'project': 's2g',
+ 'queue_size': 1024,
+ 'random_seed': 2021,
+ 'rec_aud_weight': 0.0,
+ 'rec_fac_weight': 0.0,
+ 'rec_pos_weight': 0.0,
+ 'rec_txt_weight': 0.0,
+ 'rec_ver_weight': 0.0,
+ 'rec_weight': 1.0,
+ 'render_concurrent_num': 8,
+ 'render_tmp_img_filetype': 'bmp',
+ 'render_video_fps': 30,
+ 'render_video_height': 720,
+ 'render_video_width': 1920,
+ 'resume': '',
+ 'root_path': './',
+ 'rot6d': True,
+ 'sem_rep': None,
+ 'sparse': 1,
+ 'speaker_dims': 4,
+ 'speaker_f': 0,
+ 'speaker_id': 'onehot',
+ 'stat': 'ts',
+ 'std_pose_path': '/datasets/trinity/train/',
+ 'stride': 20,
+ 't_encoder': 'null',
+ 't_fix_pre': False,
+ 't_pre_encoder': 'fasttext',
+ 'tar_joints': 'beat_smplx_full',
+ 'test_ckpt': './pretrained/mambatalk_100.bin',
+ 'test_data_path': '/datasets/trinity/test/',
+ 'test_length': 64,
+ 'test_period': 10,
+ 'test_start_epoch': 70,
+ 'train_data_path': '/datasets/trinity/train/',
+ 'train_trans': True,
+ 'trainer': 'mambatalk',
+ 'training_speakers': [2],
+ 'tsmr': 0.0,
+ 'ttmr': 0.0,
+ 'txt_prob': 1.0,
+ 'use_aug': False,
+ 'vae_codebook_size': 256,
+ 'vae_grow': [1, 1, 2, 1],
+ 'vae_layer': 4,
+ 'vae_length': 240,
+ 'vae_quantizer_lambda': 1.0,
+ 'vae_test_dim': 330,
+ 'vae_test_len': 32,
+ 'vae_test_stride': 20,
+ 'val_data_path': '/datasets/trinity/val/',
+ 'variational': False,
+ 'vel_weight': 0.0,
+ 'warmup_epochs': 0,
+ 'warmup_lr': 0.0005,
+ 'wei_weight': 0.0,
+ 'weight_decay': 0.0,
+ 'word_cache': False,
+ 'word_dims': 300,
+ 'word_f': 256,
+ 'word_index_num': 11195,
+ 'word_rep': 'textgrid',
+ 'z_type': 'speaker'}
+ 05-30 19:20:35 | # ------------ 0530_192035_mambatalk ----------- #
+ 05-30 19:20:35 | PyTorch version: 2.5.1+cu121
+ 05-30 19:20:35 | CUDA version: 12.1
+ 05-30 19:20:35 | 1 GPUs
+ 05-30 19:20:35 | Random Seed: 2021
+ 05-30 19:20:39 | Audio bit rate: 16000
+ 05-30 19:20:39 | Reading data './pretrained/test_sequences/'...
+ 05-30 19:20:39 | Creating the dataset cache...
+ 05-30 19:20:39 | # ---- Building cache for Pose   2_scott_0_1_1 ---- #
+ 05-30 19:20:39 | # ---- Building cache for Facial 2_scott_0_1_1 and Pose 2_scott_0_1_1 ---- #
+ 05-30 19:20:39 | # ---- Building cache for Audio  2_scott_0_1_1 and Pose 2_scott_0_1_1 ---- #
+ 05-30 19:21:13 | # ---- Building cache for Word   2_scott_0_1_1 and Pose 2_scott_0_1_1 ---- #
+ 05-30 19:21:13 | audio: 64s, pose: 63s, facial: 63s
+ 05-30 19:21:13 | reduce to 63s, ignore 1s
+ 05-30 19:21:13 | pose from frame 0 to 1890, length 64
+ 05-30 19:21:13 | 92 clips is expected with stride 20
+ 05-30 19:21:13 | audio from frame 0 to 1008000, length 34133
+ 05-30 19:21:13 | An error has been caught in function '<module>', process 'MainProcess' (25576), thread 'MainThread' (25412):
+Traceback (most recent call last):
+
+> File "D:\Projects\Claude\MambaTalk\test.py", line 231, in <module>
+    main_worker(0, 1, args)
+    │                 └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+    └ <function main_worker at 0x00000183EBF8A520>
+
+  File "D:\Projects\Claude\MambaTalk\test.py", line 212, in main_worker
+    trainer = __import__(f"{args.trainer}_trainer", fromlist=["something"]).CustomTrainer(args) if args.trainer != "base" else BaseTrainer(args)
+                            │    │                                                        │        │    │                      │           └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+                            │    │                                                        │        │    │                      └ <class '__main__.BaseTrainer'>
+                            │    │                                                        │        │    └ 'mambatalk'
+                            │    │                                                        │        └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+                            │    │                                                        └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+                            │    └ 'mambatalk'
+                            └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+
+  File "D:\Projects\Claude\MambaTalk\mambatalk_trainer.py", line 29, in __init__
+    super().__init__(args)
+                     └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+
+  File "D:\Projects\Claude\MambaTalk\train.py", line 43, in __init__
+    self.train_data = __import__(f"dataloaders.{args.dataset}", fromlist=["something"]).CustomDataset(args, "train")
+    │                                           │    │                                                └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+    │                                           │    └ 'beat_sep_lower'
+    │                                           └ Namespace(config='configs/mambatalk.yaml', project='s2g', stat='ts', csv_name='a2g_0', notes='', trainer='mambatalk', resume=...
+    └ <mambatalk_trainer.CustomTrainer object at 0x00000183EA663D70>
+
+  File "D:\Projects\Claude\MambaTalk\dataloaders\beat_sep_lower.py", line 114, in __init__
+    self.build_cache(preloaded_dir)
+    │    │           └ './datasets/beat_cache/beat_smplx_en_mambatalk_2/train/smplxflame_30_cache'
+    │    └ <function CustomDataset.build_cache at 0x00000183F79614E0>
+    └ <dataloaders.beat_sep_lower.CustomDataset object at 0x00000183F2A0C770>
+
+  File "D:\Projects\Claude\MambaTalk\dataloaders\beat_sep_lower.py", line 218, in build_cache
+    self.cache_generation(
+    │    └ <function CustomDataset.cache_generation at 0x00000183F79616C0>
+    └ <dataloaders.beat_sep_lower.CustomDataset object at 0x00000183F2A0C770>
+
+  File "D:\Projects\Claude\MambaTalk\dataloaders\beat_sep_lower.py", line 617, in cache_generation
+    filtered_result = self._sample_from_clip(
+                      │    └ <function CustomDataset._sample_from_clip at 0x00000183F7961760>
+                      └ <dataloaders.beat_sep_lower.CustomDataset object at 0x00000183F2A0C770>
+
+  File "D:\Projects\Claude\MambaTalk\dataloaders\beat_sep_lower.py", line 769, in _sample_from_clip
+    v = pyarrow.serialize(v).to_buffer()
+        │                 └ [array([[-1.79988638e-01, -4.63411175e-02, -8.08724537e-02, ...,
+        │                            1.00000000e+00,  1.00000000e+00,  1.00000000e+00],
+        │                   ...
+        └ <module 'pyarrow' from 'C:\\Users\\Niccee\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyarrow\\__init__...
+
+AttributeError: module 'pyarrow' has no attribute 'serialize'

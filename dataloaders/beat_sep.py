@@ -646,7 +646,7 @@ class CustomDataset(Dataset):
                         sample_trans_list,):
                         k = "{:005}".format(self.n_out_samples).encode("ascii")
                         v = [pose, audio, facial, shape, word, emo, sem, vid, trans]
-                        v = pyarrow.serialize(v).to_buffer()
+                        v = pickle.dumps(v)
                         txn.put(k, v)
                         self.n_out_samples += 1
         return n_filtered_out
@@ -655,7 +655,7 @@ class CustomDataset(Dataset):
         with self.lmdb_env.begin(write=False) as txn:
             key = "{:005}".format(idx).encode("ascii")
             sample = txn.get(key)
-            sample = pyarrow.deserialize(sample)
+            sample = pickle.loads(sample)
             tar_pose, in_audio, in_facial, in_shape, in_word, emo, sem, vid, trans = sample
             #print(in_shape)
             #vid = torch.from_numpy(vid).int()

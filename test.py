@@ -194,7 +194,15 @@ def main_worker(rank, world_size, args):
     #os.environ['TRANSFORMERS_CACHE'] = args.data_path_1 + "hub/"
     if not sys.warnoptions:
         warnings.simplefilter("ignore")
-    dist.init_process_group(backend="nccl", rank=rank, world_size=world_size)
+    if world_size == 1 and sys.platform == "win32":
+        import tempfile, pathlib
+        _store_file = pathlib.Path(tempfile.gettempdir()) / f"mambatalk_dist_{os.getpid()}"
+        _store_file.unlink(missing_ok=True)
+        store = dist.FileStore(str(_store_file), 1)
+        dist.init_process_group(backend="gloo", store=store, rank=0, world_size=1)
+    else:
+        backend = "nccl" if (torch.cuda.is_available() and sys.platform != "win32") else "gloo"
+        dist.init_process_group(backend=backend, rank=rank, world_size=world_size)
         
     logger_tools.set_args_and_logger(args, rank)
     other_tools.set_random_seed(args)
